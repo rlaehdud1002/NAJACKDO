@@ -45,7 +45,7 @@ class AladdinOpenAPIHandler extends DefaultHandler {
             tempValue = "";
         } else if (localName.equals("pubdate")) {
             tempValue = "";
-        } else if (localName.equals("pricesales")) {
+        } else if (localName.equals("priceStandard")) {
             tempValue = "";
         } else if (localName.equals("adult")) {
             tempValue = "";
@@ -81,7 +81,7 @@ class AladdinOpenAPIHandler extends DefaultHandler {
                 currentItem.setItemPage(Integer.parseInt(tempValue));
             } else if (localName.equals("pubdate")) {
                 currentItem.setPubDate(LocalDate.parse(tempValue));
-            } else if (localName.equals("pricesales")) {
+            } else if (localName.equals("priceStandard")) {
                 log.info(tempValue);
                 currentItem.setPriceStandard(Integer.parseInt(tempValue));
             } else if (localName.equals("adult")) {
@@ -91,7 +91,7 @@ class AladdinOpenAPIHandler extends DefaultHandler {
                 //log.info(tempValue);
                 currentItem.setPublisher(tempValue);
             } else if (localName.equals("ratingScore")) {
-                log.info(tempValue);
+//                log.info(tempValue);
                 currentItem.setStarPoint(Double.parseDouble(tempValue));
             }
         }
@@ -106,7 +106,7 @@ class AladdinOpenAPIHandler extends DefaultHandler {
     }
 }
 
-
+@Slf4j
 public class AladdinOpenAPI {
 
     public static String GetUrl(String index,String BASE_URL,String Results) throws Exception {
@@ -139,7 +139,7 @@ public class AladdinOpenAPI {
         hm.put("SearchTarget", "Book");
         hm.put("output", "xml");
         hm.put("Version", "20131101");
-        hm.put("OptResult","ratingInfo");
+        hm.put("OptResult","ratingInfo,Story");
         StringBuffer sb = new StringBuffer();
         Iterator<String> iter = hm.keySet().iterator();
         while (iter.hasNext()) {
@@ -147,7 +147,7 @@ public class AladdinOpenAPI {
             String val = hm.get(key);
             sb.append(key).append("=").append(val).append("&");
         }
-
+        log.info(BASE_URL + sb.toString());
         return BASE_URL + sb.toString();
     }
     public static List<BookData> addBooks(int pages, int bookNum) throws Exception {

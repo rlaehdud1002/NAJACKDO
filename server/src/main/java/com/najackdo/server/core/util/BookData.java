@@ -27,22 +27,6 @@ public class BookData {
     private String publisher; //
     private String adult; //
 
-    public BookData from(long isbn, String description, String categoryName, String title, String author, String cover, LocalDate pubDate, int priceStandard, int itemPage, double starPoint, String publisher, String adult){
-        return BookData.builder()
-                .isbn(isbn)
-                .description(description)
-                .categoryName(categoryName)
-                .title(title)
-                .author(author)
-                .cover(cover)
-                .pubDate(pubDate)
-                .priceStandard(priceStandard)
-                .itemPage(itemPage)
-                .starPoint(starPoint)
-                .publisher(publisher)
-                .adult(adult)
-                .build();
-    }
 
     @Override
     public String toString() {
