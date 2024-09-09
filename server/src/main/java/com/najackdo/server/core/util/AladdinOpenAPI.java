@@ -1,20 +1,25 @@
 package com.najackdo.server.core.util;
 
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.time.LocalDate;
 import java.util.*;
-import javax.xml.parsers.SAXParserFactory;
-import javax.xml.parsers.SAXParser;
+import com.najackdo.server.core.util.AladdinOpenAPIHandler;
+import com.najackdo.server.domain.book.entity.Book;
+import lombok.extern.slf4j.Slf4j;
 
 import lombok.extern.slf4j.Slf4j;
-import org.xml.sax.helpers.ParserAdapter;
-import org.xml.sax.helpers.DefaultHandler;
+import org.springframework.stereotype.Component;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
+import org.xml.sax.helpers.DefaultHandler;
+import org.xml.sax.helpers.ParserAdapter;
+
+import javax.xml.parsers.SAXParser;
+import javax.xml.parsers.SAXParserFactory;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Slf4j
+
 class AladdinOpenAPIHandler extends DefaultHandler {
     public List<BookData> Items;
     private BookData currentItem;
@@ -107,13 +112,14 @@ class AladdinOpenAPIHandler extends DefaultHandler {
 }
 
 @Slf4j
+@Component
 public class AladdinOpenAPI {
 
-    public static String GetUrl(String index,String BASE_URL,String Results) throws Exception {
+    public String GetUrl(String index,String BASE_URL,String Results) throws Exception {
         Map<String, String> hm = new HashMap<String, String>();
         hm.put("ttbkey", "ttbbeomsu46390952001");
         //hm.put("Query", URLEncoder.encode(searchWord, "UTF-8"));
-        hm.put("QueryType", "Bestseller");
+        hm.put("QueryType", "ItemNewAll");
         hm.put("MaxResults", Results);
         hm.put("start", index);
         hm.put("SearchTarget", "Book");
@@ -130,7 +136,7 @@ public class AladdinOpenAPI {
         return BASE_URL + sb.toString();
     }
 
-    public static String GetUrlDetail(String index,String BASE_URL,String searchISBN) throws Exception {
+    public String GetUrlDetail(String index,String BASE_URL,String searchISBN) throws Exception {
         Map<String, String> hm = new HashMap<String, String>();
         hm.put("ttbkey", "ttbbeomsu46390952001");
         hm.put("ItemId", searchISBN);
@@ -150,8 +156,9 @@ public class AladdinOpenAPI {
         log.info(BASE_URL + sb.toString());
         return BASE_URL + sb.toString();
     }
-    public static List<BookData> addBooks(int pages, int bookNum) throws Exception {
-        List<BookData> response = new ArrayList<BookData>();
+
+    public List<Book> addBooks(int pages, int bookNum) throws Exception {
+        List<Book> response = new ArrayList<Book>();
         String BASE_URL = "http://www.aladin.co.kr/ttb/api/ItemList.aspx?";
         String BASE_URL_DETAIL = "http://www.aladin.co.kr/ttb/api/ItemLookUp.aspx?";
         for(int i=1;i<=pages;i++){
@@ -169,29 +176,29 @@ public class AladdinOpenAPI {
                 //System.out.println(api_detail);
                 api_detail.parseXml(urlDetail);
                 for (BookData item_detail : api_detail.Items) {
-                    response.add(item_detail);
+                    response.add(Book.BookfromBookData(item_detail));
                 }
             }
         }
         return response;
     }
 
-    public static void main(String[] args) throws Exception {
-        List<BookData> list = addBooks(1,5);
-        FileOutputStream out = null;
-        try {
-            out = new FileOutputStream("customer.txt");
-            for(BookData customer : list) {
-                out.write(customer.toString().getBytes());
-                out.write("\n".getBytes());
-            }
-            System.out.println("파일이 저장되었습니다. 프로젝트를 새로고침(F5)하세요.");
-        } catch (FileNotFoundException e) {
-            System.out.println(e.getMessage());
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        } finally {
-            try { out.close(); } catch (IOException e) { }
-        }
-    }
+//    public static void main(String[] args) throws Exception {
+//        List<BookData> list = addBooks(1,5);
+//        FileOutputStream out = null;
+//        try {
+//            out = new FileOutputStream("customer.txt");
+//            for(BookData customer : list) {
+//                out.write(customer.toString().getBytes());
+//                out.write("\n".getBytes());
+//            }
+//            System.out.println("파일이 저장되었습니다. 프로젝트를 새로고침(F5)하세요.");
+//        } catch (FileNotFoundException e) {
+//            System.out.println(e.getMessage());
+//        } catch (IOException e) {
+//            System.out.println(e.getMessage());
+//        } finally {
+//            try { out.close(); } catch (IOException e) { }
+//        }
+//    }
 }
