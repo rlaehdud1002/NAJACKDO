@@ -43,7 +43,7 @@ class AladdinOpenAPIHandler extends DefaultHandler {
             tempValue = "";
         } else if (localName.equals("itemPage")) {
             tempValue = "";
-        } else if (localName.equals("pubdate")) {
+        } else if (localName.equals("pubDate")) {
             tempValue = "";
         } else if (localName.equals("priceStandard")) {
             tempValue = "";
@@ -79,7 +79,7 @@ class AladdinOpenAPIHandler extends DefaultHandler {
                 currentItem.setIsbn(Long.parseLong(tempValue));
             } else if (localName.equals("itemPage")) {
                 currentItem.setItemPage(Integer.parseInt(tempValue));
-            } else if (localName.equals("pubdate")) {
+            } else if (localName.equals("pubDate")) {
                 currentItem.setPubDate(LocalDate.parse(tempValue));
             } else if (localName.equals("priceStandard")) {
                 log.info(tempValue);
@@ -193,8 +193,5 @@ public class AladdinOpenAPI {
         } finally {
             try { out.close(); } catch (IOException e) { }
         }
-
-
-
     }
 }
