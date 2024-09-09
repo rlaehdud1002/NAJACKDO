@@ -1,5 +1,7 @@
 package com.najackdo.server.domain.user.entity;
 
+import java.time.LocalDateTime;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -35,4 +37,7 @@ public class CashLog {
 
 	@Column(name = "result_cash")
 	private Integer resultCash;
+
+	@Column(name = "created_at", nullable = false)
+	private LocalDateTime createdAt;
 }
