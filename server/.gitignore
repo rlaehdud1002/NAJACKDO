@@ -39,4 +39,6 @@ data/
 
 /src/main/resources/application-auth.properties
 
+/src/main/resources/najackdo-firebase-adminsdk.json
+
 .env
