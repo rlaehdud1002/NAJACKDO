@@ -2,6 +2,7 @@ package com.najackdo.server.domain.book.entity;
 
 import java.sql.Date;
 
+import com.najackdo.server.core.util.BookData;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -51,8 +52,24 @@ public class Book {
 	private int itemPage;
 
 	@Column(name = "star_point")
-	private int starPoint;
+	private double starPoint;
 
 	@Column(name = "publisher")
 	private String publisher;
+
+	public static Book BookfromBookData(BookData bookData){
+		Book book = new Book();
+		book.isbn = bookData.getIsbn();
+		book.description = bookData.getDescription();
+		book.genre = bookData.getCategoryName();
+		book.title = bookData.getTitle();
+		book.author = bookData.getAuthor();
+		book.cover = bookData.getCover();
+		book.pubDate = Date.valueOf(bookData.getPubDate());
+		book.priceStandard = bookData.getPriceStandard();
+		book.itemPage = bookData.getItemPage();
+		book.starPoint = bookData.getStarPoint();
+		book.publisher = bookData.getPublisher();
+		return book;
+	}
 }
