@@ -28,6 +28,15 @@ public enum ErrorCode {
 	INVALID_RESPONSE(3002, HttpStatus.BAD_REQUEST, "유효하지 않은 응답입니다."),
 	APPROVAL_FAILURE(3003, HttpStatus.PAYMENT_REQUIRED, "결제 승인에 실패하였습니다."),
 
+	// Survey
+	NOT_FOUND_SURVEY_RESULT(4000, HttpStatus.NOT_FOUND, "없는 설문입니다."),
+
+
+	// Chat
+	CHATROOM_NOT_FOUND(5000, HttpStatus.NOT_FOUND, "채팅방을 찾을 수 없습니다."),
+	CHATROOM_ALREADY_EXIST(5001, HttpStatus.BAD_REQUEST, "이미 존재하는 채팅방입니다."),
+	ALREADY_ENTERED_ROOM(5002, HttpStatus.BAD_REQUEST, "이미 참여한 방입니다."),
+	CHATROOM_MEMBER_NOT_FOUND(5003, HttpStatus.NOT_FOUND, "채팅방 멤버를 찾을 수 없습니다."),
 
 	// S3
 	EMPTY_FILE(8000, HttpStatus.BAD_REQUEST, "파일이 비어있습니다."),
