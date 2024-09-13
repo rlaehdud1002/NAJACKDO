@@ -81,14 +81,20 @@ class AladdinOpenAPIHandler extends DefaultHandler {
             } else if (localName.equals("cover")) {
                 currentItem.setCover(tempValue);
             } else if (localName.equals("isbn13")) {
-                currentItem.setIsbn(Long.parseLong(tempValue));
+                if(tempValue.length()>0) {
+                    currentItem.setIsbn(Long.parseLong(tempValue));
+                }
             } else if (localName.equals("itemPage")) {
                 currentItem.setItemPage(Integer.parseInt(tempValue));
             } else if (localName.equals("pubDate")) {
-                currentItem.setPubDate(LocalDate.parse(tempValue));
+                if(tempValue.length()>0) {
+                    currentItem.setPubDate(LocalDate.parse(tempValue));
+                }
             } else if (localName.equals("priceStandard")) {
                 log.info(tempValue);
-                currentItem.setPriceStandard(Integer.parseInt(tempValue));
+                if(tempValue.length()>0) {
+                    currentItem.setPriceStandard(Integer.parseInt(tempValue));
+                }
             } else if (localName.equals("adult")) {
                 //log.info(tempValue);
                 currentItem.setAdult(tempValue);
@@ -97,7 +103,9 @@ class AladdinOpenAPIHandler extends DefaultHandler {
                 currentItem.setPublisher(tempValue);
             } else if (localName.equals("ratingScore")) {
 //                log.info(tempValue);
-                currentItem.setStarPoint(Double.parseDouble(tempValue));
+                if(tempValue.length()>0) {
+                    currentItem.setStarPoint(Double.parseDouble(tempValue));
+                }
             }
         }
     }
@@ -119,7 +127,7 @@ public class AladdinOpenAPI {
         Map<String, String> hm = new HashMap<String, String>();
         hm.put("ttbkey", "ttbbeomsu46390952001");
         //hm.put("Query", URLEncoder.encode(searchWord, "UTF-8"));
-        hm.put("QueryType", "ItemNewAll");
+        hm.put("QueryType", "Bestseller");
         hm.put("MaxResults", Results);
         hm.put("start", index);
         hm.put("SearchTarget", "Book");
