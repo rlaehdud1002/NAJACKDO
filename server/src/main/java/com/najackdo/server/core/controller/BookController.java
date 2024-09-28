@@ -24,8 +24,9 @@ public class BookController {
 
     @GetMapping("/input")
     public void insertBook() throws Exception {
-        List<Book> list = aladdinOpenAPI.addBooks(10,50);
+        List<Book> list = aladdinOpenAPI.addBooks(90,50);
         log.info("리스트 도착");
+        log.info(String.valueOf(list.size()));
         bookRepository.saveAll(list);
     }
 

@@ -1,5 +1,6 @@
 package com.najackdo.server.core.util;
 
+import java.net.URLEncoder;
 import java.util.*;
 import com.najackdo.server.core.util.AladdinOpenAPIHandler;
 import com.najackdo.server.domain.book.entity.Book;
@@ -73,7 +74,22 @@ class AladdinOpenAPIHandler extends DefaultHandler {
             } else if (localName.equals("title")) {
                 currentItem.setTitle(tempValue);
             } else if (localName.equals("categoryName")) {
-                currentItem.setCategoryName(tempValue);
+                char[] tempArray = tempValue.toCharArray();
+                int count=0;
+                String gerne = "";
+                for (int i = 0; i < tempArray.length; i++) {
+                    if(tempArray[i]=='>'){
+                        count++;
+                        continue;
+                    }
+                    if(count>1){
+                        break;
+                    }
+                    if(count==1){
+                        gerne+=tempArray[i];
+                    }
+                }
+                currentItem.setCategoryName(gerne);
             } else if (localName.equals("author")) {
                 currentItem.setAuthor(tempValue);
             } else if (localName.equals("description")) {
@@ -91,7 +107,7 @@ class AladdinOpenAPIHandler extends DefaultHandler {
                     currentItem.setPubDate(LocalDate.parse(tempValue));
                 }
             } else if (localName.equals("priceStandard")) {
-                log.info(tempValue);
+//                log.info(tempValue);
                 if(tempValue.length()>0) {
                     currentItem.setPriceStandard(Integer.parseInt(tempValue));
                 }
@@ -125,14 +141,32 @@ public class AladdinOpenAPI {
 
     public String GetUrl(String index,String BASE_URL,String Results) throws Exception {
         Map<String, String> hm = new HashMap<String, String>();
-        hm.put("ttbkey", "ttbbeomsu46390952001");
-        //hm.put("Query", URLEncoder.encode(searchWord, "UTF-8"));
+        //ttbzvzv98080140001
+        //ttbdldlswns8901630001
+        //ttbajsjdlwj01230154001
+        //ttbbeomsu46390952001
+        hm.put("ttbkey", "ttbajsjdlwj01230154001");
+//        hm.put("Query", URLEncoder.encode("", "UTF-8"));
+
         hm.put("QueryType", "Bestseller");
         hm.put("MaxResults", Results);
-        hm.put("start", index);
+        hm.put("start", String.valueOf(index));
+        hm.put("CategoryId", "1");
         hm.put("SearchTarget", "Book");
         hm.put("output", "xml");
         hm.put("Version", "20131101");
+
+//        hm.put("ttbkey", "ttbbeomsu46390952001");
+//        hm.put("Query", URLEncoder.encode("ㄱ", "UTF-8"));
+////        hm.put("Query", "aladin");
+////        hm.put("QueryType", "Title");
+//        hm.put("Sort", "SalesPoint");
+//        hm.put("MaxResults", Results);
+//        hm.put("start", index);
+//        hm.put("SearchTarget", "Book");
+//        hm.put("CategoryId", "336");
+//        hm.put("output", "xml");
+//        hm.put("Version", "20131101");
         StringBuffer sb = new StringBuffer();
         Iterator<String> iter = hm.keySet().iterator();
         while (iter.hasNext()) {
@@ -140,13 +174,13 @@ public class AladdinOpenAPI {
             String val = hm.get(key);
             sb.append(key).append("=").append(val).append("&");
         }
-
+        log.info(BASE_URL + sb.toString());
         return BASE_URL + sb.toString();
     }
 
     public String GetUrlDetail(String index,String BASE_URL,String searchISBN) throws Exception {
         Map<String, String> hm = new HashMap<String, String>();
-        hm.put("ttbkey", "ttbbeomsu46390952001");
+        hm.put("ttbkey", "ttbajsjdlwj01230154001");
         hm.put("ItemId", searchISBN);
         hm.put("ItemIdType", "ISBN13");
         hm.put("Cover", "Big");
@@ -161,33 +195,35 @@ public class AladdinOpenAPI {
             String val = hm.get(key);
             sb.append(key).append("=").append(val).append("&");
         }
-        log.info(BASE_URL + sb.toString());
+        //log.info(BASE_URL + sb.toString());
         return BASE_URL + sb.toString();
     }
 
     public List<Book> addBooks(int pages, int bookNum) throws Exception {
+
         List<Book> response = new ArrayList<Book>();
         String BASE_URL = "http://www.aladin.co.kr/ttb/api/ItemList.aspx?";
         String BASE_URL_DETAIL = "http://www.aladin.co.kr/ttb/api/ItemLookUp.aspx?";
-        for(int i=1;i<=pages;i++){
-            String url = GetUrl(String.valueOf(i),BASE_URL, String.valueOf(bookNum));
-            //System.out.println(url);
-            AladdinOpenAPIHandler api = new AladdinOpenAPIHandler();
-            api.parseXml(url);
-            //System.out.println(api.Items);
-            int count=1;
-            for (BookData item : api.Items) {
-                //System.out.println(item.toString());
-                //System.out.println(count++);
-                String urlDetail = GetUrlDetail(item.getTitle(),BASE_URL_DETAIL, String.valueOf(item.getIsbn()));
-                AladdinOpenAPIHandler api_detail = new AladdinOpenAPIHandler();
-                //System.out.println(api_detail);
-                api_detail.parseXml(urlDetail);
-                for (BookData item_detail : api_detail.Items) {
-                    response.add(Book.BookfromBookData(item_detail));
+            for(int i=1;i<=pages;i++){
+                String url = GetUrl(String.valueOf(i),BASE_URL,String.valueOf(bookNum));
+                //System.out.println(url);
+                AladdinOpenAPIHandler api = new AladdinOpenAPIHandler();
+                api.parseXml(url);
+                //System.out.println(api.Items);
+                int count=1;
+                for (BookData item : api.Items) {
+                    //System.out.println(item.toString());
+                    //System.out.println(count++);
+                    String urlDetail = GetUrlDetail(item.getTitle(),BASE_URL_DETAIL, String.valueOf(item.getIsbn()));
+                    AladdinOpenAPIHandler api_detail = new AladdinOpenAPIHandler();
+                    //System.out.println(api_detail);
+                    api_detail.parseXml(urlDetail);
+                    for (BookData item_detail : api_detail.Items) {
+                        log.info("들어감");
+                        response.add(Book.BookfromBookData(item_detail));
+                    }
                 }
             }
-        }
         return response;
     }
 
