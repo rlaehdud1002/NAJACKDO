@@ -27,19 +27,19 @@ public class Book {
 	@Column(name = "isbn", nullable = false)
 	private Long isbn;
 
-	@Column(name = "description")
+	@Column(name = "description",length = 50000)
 	private String description;
 
-	@Column(name = "genre")
+	@Column(name = "genre",length = 1000)
 	private String genre;
 
-	@Column(name = "title")
+	@Column(name = "title",length = 1000)
 	private String title;
 
-	@Column(name = "author")
+	@Column(name = "author",length = 1000)
 	private String author;
 
-	@Column(name = "cover")
+	@Column(name = "cover",length = 1000)
 	private String cover;
 
 	@Column(name = "pub_date")
@@ -54,7 +54,7 @@ public class Book {
 	@Column(name = "star_point")
 	private double starPoint;
 
-	@Column(name = "publisher")
+	@Column(name = "publisher",length = 1000)
 	private String publisher;
 
 	public static Book BookfromBookData(BookData bookData){
