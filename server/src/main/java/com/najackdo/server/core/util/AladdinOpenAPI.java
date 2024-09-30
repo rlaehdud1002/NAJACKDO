@@ -145,13 +145,13 @@ public class AladdinOpenAPI {
         //ttbdldlswns8901630001
         //ttbajsjdlwj01230154001
         //ttbbeomsu46390952001
-        hm.put("ttbkey", "ttbajsjdlwj01230154001");
+        hm.put("ttbkey", "ttbbeomsu46390952001");
 //        hm.put("Query", URLEncoder.encode("", "UTF-8"));
 
         hm.put("QueryType", "Bestseller");
         hm.put("MaxResults", Results);
         hm.put("start", String.valueOf(index));
-        hm.put("CategoryId", "1");
+        hm.put("CategoryId", "2105");
         hm.put("SearchTarget", "Book");
         hm.put("output", "xml");
         hm.put("Version", "20131101");
@@ -174,13 +174,13 @@ public class AladdinOpenAPI {
             String val = hm.get(key);
             sb.append(key).append("=").append(val).append("&");
         }
-        log.info(BASE_URL + sb.toString());
-        return BASE_URL + sb.toString();
+        log.info(BASE_URL + sb.toString()+"Year=2015&Month=8&Week=3");
+        return BASE_URL + sb.toString()+"Year=2015&Month=8&Week=3";
     }
 
     public String GetUrlDetail(String index,String BASE_URL,String searchISBN) throws Exception {
         Map<String, String> hm = new HashMap<String, String>();
-        hm.put("ttbkey", "ttbajsjdlwj01230154001");
+        hm.put("ttbkey", "ttbbeomsu46390952001");
         hm.put("ItemId", searchISBN);
         hm.put("ItemIdType", "ISBN13");
         hm.put("Cover", "Big");
