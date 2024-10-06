@@ -17,6 +17,7 @@ const RentalBookInfo = ({ bookId, userId, setIsOwner, setPrice }) => {
     queryKey: ["bookdetail", "rental"],
     queryFn: () => getUserBookDetail(bookId),
   });
+  console.log("대여 도서 상세 정보 조회", userBookData);  
 
   const mutation = useMutation({
     mutationKey: ["RentalCostData"],
@@ -79,7 +80,7 @@ const RentalBookInfo = ({ bookId, userId, setIsOwner, setPrice }) => {
 
   return (
     <div className="border-2">
-      <RentalBookDetail imageUrl={userBookData.frontImagePath} />
+      <RentalBookDetail frontimageUrl={userBookData.frontImagePath} backimageUrl={userBookData.backImagePath} />
       <div className="m-4 mt-11">
         <SellerInfo seller={seller} />
         <div>
