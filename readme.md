@@ -36,7 +36,7 @@
 
 <br>
 
-* ## 프로젝트 개요
+* ## 프로젝트 기간
   | 프로젝트 기간 | 2024.08.26 ~ 2024.10.11 (8주) |
   |---|---|
 <br>
@@ -58,11 +58,13 @@
 
 # 📚 프로젝트 설계
 * ## 개발 환경
+
+
   FE: React 18.3.1, TypeScript, React, PWA  
   BE: Java 17, SpringBoot 3.3.3, RabbitMQ  
   DB: Postgresql 16.3, Redis, Mongo  
   Infra: Ubuntu 20.04, Docker
-<br>
+
 
   <h3>AI</h3>
   <p>
@@ -110,10 +112,13 @@
   <h3>협업 툴</h3>
   <p>
   <img alt='jira' src="https://img.shields.io/badge/Jira-0052CC?style=for-the-badge&logo=Jira&logoColor=white">
-  <a href="https://www.notion.so/Hwang-s-Company-fe9447ce219c4845b75beb9200367d45">
+  <a href="https://honorable-toucan-4a8.notion.site/Hwang-s-Company-fe9447ce219c4845b75beb9200367d45?pvs=4">
   <img alt='jira' src="https://img.shields.io/badge/Notion-black?style=for-the-badge&logo=Notion&logoColor=white">
   </a>
   </p>
+
+<br>
+
 
 <br>
   
@@ -121,92 +126,101 @@
 
 
 # 📚 기능 소개
-* ### 1.&nbsp; AI를 활용한 편리한 책 등록 및 품질 판단
-  <p style='font-size:16px;'>1.1 yolov9과 OCR을 활용한 책 등록</p>
-  <p>&emsp; 책장 사진을 찍으면 책등을 detection 하고, OCR을 통해 책등의 텍스트를 추출한다. 이후 DB의 책 제목 중 가장 유사한 책 정보를 제공합니다.</p>
-  <img alt='func1.1' src=''>
-
-  <p style='font-size:16px;'>1.2 yolov9을 기반으로 book damage Detection을 통한 책 품질 검사</p>
-  <img alt='func1.1' src=''>
+* ### **1.&nbsp; AI를 활용한 편리한 책 등록 및 품질 판단**
+  <p style='font-size:16px; font-weight:bold;'>1.1 yolov9과 OCR을 활용한 책 등록</p>
+  <p style='font-size:16px;'>&emsp;1.1.2 단일 책 등록</p>
+  <p style='font-size:16px;'>&emsp; 텍스트 검색이나, ISBN 바코드 촬영을 통해 단일 도서를 간편하게 등록할 수 있습니다.</p>
+  <img alt='func5.1' src='./readme-image/UI/도서등록2가지.jpg' height=300px style="padding-left: 20px;">
+  <img alt='func5.1' src='./readme-image/UI/도서등록텍스트.jpg' height=300px>
+  <img alt='func5.1' src='./readme-image/UI/도서등록isbn.jpg' height=300px>
+  <img alt='func5.1' src='./readme-image/UI/단일도서등록결과.jpg' height=300px>
+  <p style='font-size:16px; '>&emsp;1.1.2 책장 등록</p>
+  <p style='font-size:16px;'>&emsp; 책장 사진을 찍으면 책등을 detection 하고, OCR을 통해 책등의 텍스트를 추출한다. 이후 DB의 책 제목 중 가장 유사한 책 정보를 제공합니다.</p>
+  <img alt='func5.1' src='./readme-image/UI/책장등록.jpg' height=300px style="padding-left: 20px;">
+  <img alt='func5.1' src='./readme-image/UI/책장등록완료.jpg' height=300px>
+  <br><br>
+  <p style='font-size:16px; font-weight:bold;'>1.2 yolov9을 기반으로 book damage Detection을 통한 책 품질 검사</p>
+  <img alt='func5.1' src='./readme-image/UI/AI인증중.jpg' height=300px style="padding-left: 20px;">
+  <img alt='func5.1' src='./readme-image/UI/AI인증완료.jpg' height=300px>
   
 <br>
   
-* ### 2.&nbsp; 직거래 만남을 위한 실시간 채팅 서비스
-  <p style='font-size:16px;'>2.1 책장 기준 장바구니 담기</p>
-  <p>&emsp; 도서 상세페이지에서 책을 하나씩 장바구니에 담거나 유저의 책장에서 여러권을 한번에 장바구니에 담을 수 있습니다.</p>
-  <img alt='func5.1' src='./readme-image/UI/책대여상세1.jpeg' height=300px>
+* ### **2.&nbsp; 직거래 만남을 위한 실시간 채팅 서비스**
+  <p style='font-size:16px; font-weight:bold;'>2.1 책장 기준 장바구니 담기</p>
+  <p style='font-size:16px;'>&emsp; 도서 상세페이지에서 책을 하나씩 장바구니에 담거나 유저의 책장에서 여러권을 한번에 장바구니에 담을 수 있습니다.</p>
+  <img alt='func5.1' src='./readme-image/UI/책대여상세1.jpeg' height=300px style="padding-left: 20px;">
   <img alt='func5.1' src='./readme-image/UI/책장대여신청.jpeg' height=300px>
   <img alt='func5.1' src='./readme-image/UI/장바구니.jpeg' height=300px>
   <br><br>
 
-  <p style='font-size:16px;'>2.2 대출 신청을 통한 채팅방 자동 생성</p>
-  <p>&emsp; 도서 대출을 신청하면 장바구니를 기준으로 채팅방이 자동 생성됩니다.</p>
-  <img alt='func5.1' src='./readme-image/UI/채팅방리스트.jpeg' height=300px>
+  <p style='font-size:16px; font-weight:bold;'>2.2 대출 신청을 통한 채팅방 자동 생성</p>
+  <p style='font-size:16px;'>&emsp; 도서 대출을 신청하면 장바구니를 기준으로 채팅방이 자동 생성됩니다.</p>
+  <img alt='func5.1' src='./readme-image/UI/채팅방리스트.jpeg' height=300px style="padding-left: 20px;">
   <img alt='func5.1' src='./readme-image/UI/채팅방_초기.jpeg' height=300px>
   <img alt='func5.1' src='./readme-image/UI/채팅방대여도서정보.jpeg' height=300px>
   <br><br>
   
-  <p style='font-size:16px;'>2.3 도서 대출 기간을 설정하고 알맞는 금액을 송금</p>
-  <p>&emsp; 도서 대출 기간을 설정하고 책잎을 송금하면 대출 신청이 완료됩니다.</p>
-  <img alt='func5.1' src='./readme-image/UI/채팅방_기간설정.jpeg' height=300px>
+  <p style='font-size:16px; font-weight:bold;'>2.3 도서 대출 기간을 설정하고 알맞는 금액을 송금</p>
+  <p style='font-size:16px;'>&emsp; 도서 대출 기간을 설정하고 책잎을 송금하면 대출 신청이 완료됩니다.</p>
+  <img alt='func5.1' src='./readme-image/UI/채팅방_기간설정.jpeg' height=300px style="padding-left: 20px;">
   <img alt='func5.1' src='./readme-image/UI/채팅방_송금.jpeg' height=300px>
   <img alt='func5.1' src='./readme-image/UI/채팅방_송금메세지.jpeg' height=300px>
   <br><br>
   
-  <p style='font-size:16px;'>2.4 책 반납 후 상호 매너 평가</p>
-  <p>&emsp; 도서 대출 및 반납이 끝나면 상호 거래 후기를 남깁니다.</p>
-  <img alt='func5.1' src='./readme-image/UI/채팅방_반납완료.jpeg' height=300px>
+  <p style='font-size:16px; font-weight:bold;'>2.4 책 반납 후 상호 매너 평가</p>
+  <p style='font-size:16px;'>&emsp; 도서 대출 및 반납이 끝나면 상호 거래 후기를 남깁니다.</p>
+  <img alt='func5.1' src='./readme-image/UI/채팅방_반납완료.jpeg' height=300px style="padding-left: 20px;">
   <img alt='func5.1' src='./readme-image/UI/거래후기.jpeg' height=300px>
   <br><br>
   
-  <p style='font-size:16px;'>2.5 알람 기능 </p>
-  <p>&emsp; 푸시 알림을 통해 대출 및 반납 정보를 받을 수 있습니다.  </p>
+  <p style='font-size:16px; font-weight:bold;'>2.5 알람 기능 </p>
+  <p style='font-size:16px;'>&emsp; 푸시 알림을 통해 대출 및 반납 정보를 받을 수 있습니다.  </p>
   
-  <img alt='func5.1' src='./readme-image/UI/알람.png' height=300px>
+  <img alt='func5.1' src='./readme-image/UI/알람.png' height=300px style="padding-left: 20px;">
   
 <br>
   
-* ### 3.&nbsp; 메타데이터를 기반으로 한 책 추천 기능
-  <p style='font-size:16px;'>3.1 가입 시 정보 입력</p>
-  <p>&emsp; 가입 시 연령, 성별, 관심 분야를 간단하게 선택하여 입력받습니다.</p>
-  <img alt='func5.1' src='./readme-image/UI/연령.jpeg' height=300px>
+* ### **3.&nbsp; 메타데이터를 기반으로 한 책 추천 기능**
+  <p style='font-size:16px;font-weight:bold;'>3.1 가입 시 정보 입력</p>
+  <p style='font-size:16px;'>&emsp; 가입 시 연령, 성별, 관심 분야를 간단하게 선택하여 입력받습니다.</p>
+  <img alt='func5.1' src='./readme-image/UI/연령.jpeg' height=300px style="padding-left: 20px;">
   <img alt='func5.1' src='./readme-image/UI/성별.jpeg' height=300px>  
   <img alt='func5.1' src='./readme-image/UI/관심분야.jpeg' height=300px>  
   <br><br>
   
-  <p style='font-size:16px;'>3.2 사용자 선호도 수집</p>
-  <p>&emsp; 좋아요 기능을 통해 사용자의 선호도를 수집합니다.</p>
-  <img alt='func5.1' src='./readme-image/UI/좋아요책.jpeg' height=300px>
+  <p style='font-size:16px; font-weight:bold;'>3.2 사용자 선호도 수집</p>
+  <p style='font-size:16px;'>&emsp; 좋아요 기능을 통해 사용자의 선호도를 수집합니다.</p>
+  <img alt='func5.1' src='./readme-image/UI/좋아요책.jpeg' height=300px style="padding-left: 20px;">
   <img alt='func5.1' src='./readme-image/UI/좋아요책장.jpeg' height=300px>
-  <p>&emsp; 도서 대여 기록을 통해 사용자의 선호도를 수집합니다.</p>
-  <img alt='func5.1' src='./readme-image/UI//히스토리빌린.jpeg' height=300px>
+  <p style='font-size:16px;'>&emsp; 도서 대여 기록을 통해 사용자의 선호도를 수집합니다.</p>
+  <img alt='func5.1' src='./readme-image/UI//히스토리빌린.jpeg' height=300px style="padding-left: 20px;">
   <img alt='func5.1' src='./readme-image/UI/히스토리빌려준.jpeg' height=300px>
   <br><br>
   
-  <p style='font-size:16px;'>3.4 특정 챡 패이지의 체류 시간</p>
-  <p>&emsp; 도서 상세 페이지에 체류한 시간을 계산하여 데이터로 활용합니다.</p>
+  <p style='font-size:16px; font-weight:bold;'>3.4 특정 책 패이지의 체류 시간</p>
+  <p style='font-size:16px;'>&emsp; 도서 상세 페이지에 체류한 시간을 계산하여 데이터로 활용합니다.</p>
   <br>
   
-  <p style='font-size:16px;'>3.5 메타데이터를 기반으로 한 책 추천</p>
-  <img alt='func5.1' src='./readme-image/UI/추천_메인.jpeg' height=300px>
+  <p style='font-size:16px; font-weight:bold;'>3.5 메타데이터를 기반으로 한 책 추천</p>
+  <img alt='func5.1' src='./readme-image/UI/추천_메인.jpeg' height=300px style="padding-left: 20px;">
   <img alt='func5.1' src='./readme-image/UI/추천_지역.jpeg' height=300px>
   <img alt='func5.1' src='./readme-image/UI/추천_상세.jpeg' height=300px>
     
 <br>
   
-* ### 4.&nbsp; 위치 정보를 이용한 동네 기반 서비스
-  <p style='font-size:16px;'>4.1 지역 및 범위 설정</p>
-  <p>&emsp; 현재 나의 위치를 기반으로 가까운 동네 리스트를 볼 수 있다. 사용자의 선택을 기준으로 지역이 설정됩니다.</p>
-  <p>&emsp; 책장을 공유할 지역 범위를 설정합니다.</p>
+* ### **4.&nbsp; 위치 정보를 이용한 동네 기반 서비스**
+  <p style='font-size:16px; font-weight:bold;'>4.1 지역 및 범위 설정</p>
+  <p style='font-size:16px;'>&emsp; 현재 나의 위치를 기반으로 가까운 동네 리스트를 볼 수 있습니다.</p>
+  <p style='font-size:16px;'>&emsp; 책장을 공유할 지역과 그 범위를 설정합니다.</p>
 
 
-  <img alt='func5.1' src='./readme-image/UI/지역설정.jpeg' height=300px>
+  <img alt='func5.1' src='./readme-image/UI/지역설정.jpeg' height=300px style="padding-left: 20px;">
   <img alt='func5.1' src='./readme-image/UI/지역범위.jpeg' height=300px>
   <br><br>
   
-  <p style='font-size:16px;'>4.2 위치 기반 책장 정보 </p>
-  <p>&emsp; 도서를 공유할 수 동네 책장을 볼 수 있다.</p>
-  <img alt='func5.1' src='./readme-image/UI/주변책장.jpeg' height=300px>
+  <p style='font-size:16px; font-weight:bold;'>4.2 위치 기반 책장 정보 </p>
+  <p style='font-size:16px;'>&emsp; 도서를 공유할 수 동네 책장을 볼 수 있습니다.</p>
+  <img alt='func5.1' src='./readme-image/UI/주변책장.jpeg' height=300px style="padding-left: 20px;">
 
     
 <br>
@@ -223,16 +237,11 @@
 ##### [⚙ ERD](./readme-image/erd.png)
 
 ##### [📋 요구사항 명세서]()
-요구명세서 연결
 
-##### [📋 API 명세서](./readme-image/Swagger UI.pdf)
+##### [📋 API 명세서](./readme-image/Swagger)
 
-<br><br>
+##### [🎞 UCC](https://www.youtube.com/watch?v=3rQWtE-nxIk)
 
-
-
-##### [🎞 UCC](https://www.youtube.com/watch?v=Cw1PPle6WDQ)
-유튜브 연결
 
 
 <br><br>
@@ -240,11 +249,18 @@
 
 ### 커밋 컨벤션
 - `[FEAT]` : 새로운 기능 추가
+
 - `[FIX]` : 버그 수정
+
 - `[DOCS]` : 문서 수정
+
 - `[STYLE]` : 코드 포맷팅, 세미콜론 누락, 코드 변경이 없는 경우
+
 - `[REFACTOR]`: 코드 리펙토링DOCS
+
 - `[TEST]` : 테스트 코드, 리펙토링 테스트 코드 추가
+
 - `[CHORE]` : 빌드 업무 수정, 패키지 매니저 수정
+
 - `[MERGE]` : 병합  
 
