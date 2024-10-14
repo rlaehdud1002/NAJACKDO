@@ -42,25 +42,21 @@ const ApplyBookResult = ({ kind, keyword, setOpen }: ApplyBookResultProps) => {
     <Fragment>
       <div
         onClick={() => navigate("/apply")}
-        className="cursor-pointer p-4 flex flex-row items-center"
+        className="cursor-pointer px-4 flex flex-row items-center"
       >
         <IoChevronBack size={25} color="#545454" />
-        <span className="font-bold text-xl ml-2">
-          도서 등록 - 도서 단일 촬영
-        </span>
+        <span className="font-bold text-xl ml-2">도서 등록 - 도서 정보</span>
       </div>
       <div className="px-[25px]">
-        <div className="flex flex-col items-center">
-          <span className="font-bold text-base mb-4">도서 표지</span>
+        <div className="flex flex-col items-center py-5">
           <img
             src={bookInfo.cover}
             alt={bookInfo.title}
-            width={200}
-            height={270}
+            width={180}
+            height={250}
           />
         </div>
-        <div>
-          <p className="font-bold text-base text-center my-4">등록 도서 정보</p>
+        <div className="pt-5">
           <ApplyBookInfo book={bookInfo} />
         </div>
         <div className="flex flex-row justify-center space-x-4 my-8">
